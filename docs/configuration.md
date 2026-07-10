@@ -4,7 +4,9 @@
 truth. The config describes how to reach the cluster and which templates,
 storage, plans, and SSH keys should appear in provisioning workflows.
 
-Start with [the example config](../configs/boringctl.example.yaml).
+For a first installation, follow [Getting started](getting-started.md). The
+complete neutral catalog is in
+[the example config](../configs/boringctl.example.yaml).
 
 ## Config paths
 
@@ -38,10 +40,14 @@ Set the environment variables named by `auth.token_id_env` and
 
 ```bash
 install -m 600 /dev/null ~/.config/boringctl/credentials.env
-printf '%s\n' \
-  'PVE_TOKEN_ID=boringctl@pve!cli' \
-  'PVE_TOKEN_SECRET=your-token-secret' \
-  > ~/.config/boringctl/credentials.env
+$EDITOR ~/.config/boringctl/credentials.env
+```
+
+Enter the values in the editor:
+
+```dotenv
+PVE_TOKEN_ID=boringctl@pve!cli
+PVE_TOKEN_SECRET=your-token-secret
 ```
 
 `boringctl doctor` rejects credential files that are readable by other users.
@@ -78,18 +84,24 @@ allowed to connect to the node and run `pct exec` for containers. Keep
 `BatchMode=yes` and strict host-key checking in unattended workflows; add the
 real host key to `known_hosts` before the first run.
 
+The `defaults.ssh_options` list applies to node, LXC, and QEMU shell access.
+The separate `caddy.ssh_options` list applies only to Caddy deployment.
+
 ## Discover a catalog
 
-With the endpoint and credentials configured, `init-config` discovers cluster
-nodes, active storage, and QEMU templates named `tmpl-*`:
+`init-config` is assisted discovery, not a zero-config bootstrap. It first
+loads an already valid config and credentials, then discovers cluster nodes,
+active storage, and QEMU templates named `tmpl-*`:
 
 ```bash
-boringctl init-config
-boringctl init-config --output ~/.config/boringctl/config.yaml --force
+boringctl init-config --output ./discovered.yaml
+$EDITOR ./discovered.yaml
 ```
 
-Review the generated catalog before provisioning. LXC image entries and local
-plan names remain operator choices.
+Review and merge the output instead of overwriting your only working config.
+Node SSH hosts are left blank, storage may need pruning, plans remain operator
+choices, and LXC images are not discovered. The result contains no images when
+the cluster has no QEMU templates whose names begin with `tmpl-`.
 
 ## Validate the result
 
@@ -104,3 +116,6 @@ The doctor checks credential permissions, TLS posture, Proxmox connectivity,
 configured nodes and SSH hosts, storage and template mappings, guest-agent
 availability, and the optional Caddy tree. Required failures return a non-zero
 exit status; advisory findings are warnings.
+
+A valid catalog currently requires at least one node, one QEMU image mapping,
+and one plan, including for read-only dashboard use.

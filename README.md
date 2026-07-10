@@ -8,6 +8,10 @@ there is no separate control-plane database or resident agent.
 [CI](https://github.com/boring-labs/boringctl/actions/workflows/ci.yml) ·
 [Security](SECURITY.md) · [MIT license](LICENSE)
 
+![boringctl cluster dashboard](docs/assets/boringctl-dashboard.png)
+
+_Dashboard shown with synthetic sample data._
+
 ## What it does
 
 - Creates VMs and LXC containers from a configurable template catalog
@@ -42,7 +46,20 @@ go build -o boringctl ./cmd/boringctl
 
 ## Quick start
 
-Create the config directory and download the neutral example:
+For the complete first-time setup, including Proxmox user and token creation,
+catalog configuration, templates, SSH, and troubleshooting, follow the
+[getting started guide](docs/getting-started.md).
+
+Create the config directory. From an extracted release archive or source
+checkout, copy the version-matched example:
+
+```bash
+mkdir -p ~/.config/boringctl
+cp configs/boringctl.example.yaml ~/.config/boringctl/config.yaml
+$EDITOR ~/.config/boringctl/config.yaml
+```
+
+When installed with `go install`, download the example from the repository:
 
 ```bash
 mkdir -p ~/.config/boringctl
@@ -50,12 +67,6 @@ curl -fsSL \
   https://raw.githubusercontent.com/boring-labs/boringctl/main/configs/boringctl.example.yaml \
   -o ~/.config/boringctl/config.yaml
 $EDITOR ~/.config/boringctl/config.yaml
-```
-
-From a source checkout, you can copy it instead:
-
-```bash
-cp configs/boringctl.example.yaml ~/.config/boringctl/config.yaml
 ```
 
 Supply a dedicated Proxmox API token through the environment:
@@ -69,10 +80,15 @@ Or keep those values in an owner-only credentials file:
 
 ```bash
 install -m 600 /dev/null ~/.config/boringctl/credentials.env
-printf '%s\n' \
-  'PVE_TOKEN_ID=boringctl@pve!cli' \
-  'PVE_TOKEN_SECRET=your-token-secret' \
-  > ~/.config/boringctl/credentials.env
+$EDITOR ~/.config/boringctl/credentials.env
+```
+
+Enter the values in the editor so the token secret does not enter shell
+history:
+
+```dotenv
+PVE_TOKEN_ID=boringctl@pve!cli
+PVE_TOKEN_SECRET=your-token-secret
 ```
 
 Check the configuration and live integrations before making changes:
@@ -180,6 +196,14 @@ boringctl task wait 'UPID:pve1:...' --timeout 5m
 
 See [automation](docs/automation.md) for JSON behavior, Proxmox tasks, raw API
 access, export/apply, and automatic releases.
+
+## [Documentation](docs/README.md)
+
+- [Getting started](docs/getting-started.md)
+- [Configuration](docs/configuration.md)
+- [Cluster operations](docs/operations.md)
+- [Caddy integration](docs/caddy.md)
+- [Automation](docs/automation.md)
 
 ## Development
 
