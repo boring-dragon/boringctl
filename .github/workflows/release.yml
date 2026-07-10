@@ -93,7 +93,7 @@ jobs:
           archive="boringctl_${RELEASE_VERSION}_${GOOS}_${GOARCH}"
           mkdir -p "dist/${archive}"
           go build -trimpath \
-            -ldflags "-s -w -X github.com/boring-labs/boringctl/internal/version.Version=${RELEASE_VERSION} -X github.com/boring-labs/boringctl/internal/version.Commit=${RELEASE_COMMIT} -X github.com/boring-labs/boringctl/internal/version.BuildDate=${build_date}" \
+            -ldflags "-s -w -X github.com/boring-dragon/boringctl/internal/version.Version=${RELEASE_VERSION} -X github.com/boring-dragon/boringctl/internal/version.Commit=${RELEASE_COMMIT} -X github.com/boring-dragon/boringctl/internal/version.BuildDate=${build_date}" \
             -o "dist/${archive}/boringctl" ./cmd/boringctl
           cp CONTRIBUTING.md LICENSE README.md SECURITY.md "dist/${archive}/"
           cp -R configs docs scripts "dist/${archive}/"

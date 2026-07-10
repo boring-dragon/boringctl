@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/boring-labs/boringctl/internal/proxmox"
+	"github.com/boring-dragon/boringctl/internal/proxmox"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"

@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/boring-labs/boringctl/internal/config"
+	"github.com/boring-dragon/boringctl/internal/config"
 )
 
 func (service *Service) DiscoverConfig(ctx context.Context) (*config.Config, error) {

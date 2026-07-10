@@ -3,7 +3,7 @@ package cli
 import (
 	"fmt"
 
-	"github.com/boring-labs/boringctl/internal/version"
+	"github.com/boring-dragon/boringctl/internal/version"
 
 	"github.com/spf13/cobra"
 )

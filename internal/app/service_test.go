@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/boring-labs/boringctl/internal/config"
-	"github.com/boring-labs/boringctl/internal/proxmox"
+	"github.com/boring-dragon/boringctl/internal/config"
+	"github.com/boring-dragon/boringctl/internal/proxmox"
 )
 
 func TestProxmoxSSHKeysValueEscapesSpacesAndPlusSigns(t *testing.T) {

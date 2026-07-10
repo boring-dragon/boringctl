@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/boring-labs/boringctl/internal/app"
+	"github.com/boring-dragon/boringctl/internal/app"
 
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"

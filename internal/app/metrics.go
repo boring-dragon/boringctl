@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/boring-labs/boringctl/internal/proxmox"
+	"github.com/boring-dragon/boringctl/internal/proxmox"
 )
 
 type metricsAPI interface {

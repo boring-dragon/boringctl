@@ -1,4 +1,4 @@
-module github.com/boring-labs/boringctl
+module github.com/boring-dragon/boringctl
 
 go 1.25.0
 

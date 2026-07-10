@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/boring-labs/boringctl/internal/app"
-	"github.com/boring-labs/boringctl/internal/config"
+	"github.com/boring-dragon/boringctl/internal/app"
+	"github.com/boring-dragon/boringctl/internal/config"
 
 	"github.com/spf13/cobra"
 )

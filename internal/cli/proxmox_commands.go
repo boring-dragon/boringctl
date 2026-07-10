@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/boring-labs/boringctl/internal/app"
-	"github.com/boring-labs/boringctl/internal/config"
-	"github.com/boring-labs/boringctl/internal/proxmox"
+	"github.com/boring-dragon/boringctl/internal/app"
+	"github.com/boring-dragon/boringctl/internal/config"
+	"github.com/boring-dragon/boringctl/internal/proxmox"
 
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v3"

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/boring-labs/boringctl/internal/cli"
+	"github.com/boring-dragon/boringctl/internal/cli"
 )
 
 func main() {

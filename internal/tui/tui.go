@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/boring-labs/boringctl/internal/app"
-	"github.com/boring-labs/boringctl/internal/proxmox"
+	"github.com/boring-dragon/boringctl/internal/app"
+	"github.com/boring-dragon/boringctl/internal/proxmox"
 
 	"github.com/charmbracelet/bubbles/list"
 	"github.com/charmbracelet/bubbles/textarea"

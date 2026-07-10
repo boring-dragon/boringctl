@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/boring-labs/boringctl/internal/app"
+	"github.com/boring-dragon/boringctl/internal/app"
 
 	"github.com/spf13/cobra"
 )

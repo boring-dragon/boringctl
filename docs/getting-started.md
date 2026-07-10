@@ -15,13 +15,13 @@ mutation permissions only when you are ready to provision or change guests.
 ## 1. Install boringctl
 
 Download the archive for your platform and `checksums.txt` from the
-[latest release](https://github.com/boring-labs/boringctl/releases/latest),
+[latest release](https://github.com/boring-dragon/boringctl/releases/latest),
 verify its SHA-256 digest, and place `boringctl` on your `PATH`.
 
 You can instead install it with Go:
 
 ```bash
-go install github.com/boring-labs/boringctl/cmd/boringctl@latest
+go install github.com/boring-dragon/boringctl/cmd/boringctl@latest
 boringctl version
 ```
 
@@ -69,7 +69,7 @@ repository:
 ```bash
 mkdir -p ~/.config/boringctl
 curl -fsSL \
-  https://raw.githubusercontent.com/boring-labs/boringctl/main/configs/boringctl.example.yaml \
+  https://raw.githubusercontent.com/boring-dragon/boringctl/main/configs/boringctl.example.yaml \
   -o ~/.config/boringctl/config.yaml
 $EDITOR ~/.config/boringctl/config.yaml
 ```

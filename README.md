@@ -4,8 +4,8 @@
 QEMU virtual machines and LXC containers. Proxmox stays the source of truth;
 there is no separate control-plane database or resident agent.
 
-[Releases](https://github.com/boring-labs/boringctl/releases) ·
-[CI](https://github.com/boring-labs/boringctl/actions/workflows/ci.yml) ·
+[Releases](https://github.com/boring-dragon/boringctl/releases) ·
+[CI](https://github.com/boring-dragon/boringctl/actions/workflows/ci.yml) ·
 [Security](SECURITY.md) · [MIT license](LICENSE)
 
 ![boringctl cluster dashboard](docs/assets/boringctl-dashboard.png)
@@ -26,14 +26,14 @@ _Dashboard shown with synthetic sample data._
 ## Install
 
 Download the archive for your platform and `checksums.txt` from the
-[latest release](https://github.com/boring-labs/boringctl/releases/latest).
+[latest release](https://github.com/boring-dragon/boringctl/releases/latest).
 Verify the archive's SHA-256 digest before installing the binary on your
 `PATH`. Releases are available for Linux and macOS on amd64 and arm64.
 
 With Go 1.25 or newer:
 
 ```bash
-go install github.com/boring-labs/boringctl/cmd/boringctl@latest
+go install github.com/boring-dragon/boringctl/cmd/boringctl@latest
 boringctl version
 ```
 
@@ -64,7 +64,7 @@ When installed with `go install`, download the example from the repository:
 ```bash
 mkdir -p ~/.config/boringctl
 curl -fsSL \
-  https://raw.githubusercontent.com/boring-labs/boringctl/main/configs/boringctl.example.yaml \
+  https://raw.githubusercontent.com/boring-dragon/boringctl/main/configs/boringctl.example.yaml \
   -o ~/.config/boringctl/config.yaml
 $EDITOR ~/.config/boringctl/config.yaml
 ```
