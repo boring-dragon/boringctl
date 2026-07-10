@@ -145,7 +145,7 @@ func caddyNestedDeployError(err error, backup string, rolledBack bool, rollbackS
 func (commandContext *commandContext) caddyCommand() *cobra.Command {
 	caddyCommand := &cobra.Command{
 		Use:   "caddy",
-		Short: "Manage homelab Caddy routes from git",
+		Short: "Manage Caddy routes from a Git repository",
 	}
 
 	caddyCommand.AddCommand(
@@ -429,7 +429,7 @@ func (commandContext *commandContext) caddyListCommand() *cobra.Command {
 
 	listCommand := &cobra.Command{
 		Use:   "list",
-		Short: "List Caddy routes from the homelab Git repo",
+		Short: "List Caddy routes from the configured Git repository",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			service, err := commandContext.loadCaddyService()
 			if err != nil {

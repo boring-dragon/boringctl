@@ -3,4 +3,12 @@
 /boringctl.generated.yaml
 /dist/
 /tmp/
+.env
+.env.*
+credentials.env
+history.json
+operations.json
+*.bundle
+*.key
+*.pem
 *.log

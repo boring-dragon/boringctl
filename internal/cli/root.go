@@ -310,8 +310,8 @@ func Execute() error {
 
 	rootCommand := &cobra.Command{
 		Use:   "boringctl",
-		Short: "Homelab cloud control for Proxmox VMs and LXC containers",
-		Long: `boringctl manages this homelab through the Proxmox API and a Git-managed Caddy config.
+		Short: "Proxmox cluster control for VMs and LXC containers",
+		Long: `boringctl manages a Proxmox cluster through its API, with optional Git-managed Caddy configuration.
 
 Agent notes:
   - Use --output json for stable machine-readable responses.
@@ -696,7 +696,7 @@ func (commandContext *commandContext) plansCommand() *cobra.Command {
 func (commandContext *commandContext) tuiCommand() *cobra.Command {
 	return &cobra.Command{
 		Use:   "tui",
-		Short: "Open the interactive homelab TUI",
+		Short: "Open the interactive cluster TUI",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return commandContext.runTUI()
 		},

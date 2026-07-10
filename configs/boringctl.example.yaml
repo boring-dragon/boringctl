@@ -20,10 +20,16 @@ defaults:
 
 # Caddy integration is optional. Remove this block when it is not used.
 caddy:
-  repo_path: "~/homelab"
+  repo_path: "~/infrastructure"
   proxmox_ssh_host: "root@pve.example.com"
-  container_id: 112
-  ssh_options: ["-o", "BatchMode=yes", "-o", "IdentityAgent=none", "-o", "StrictHostKeyChecking=yes"]
+  container_id: 200
+  ssh_options:
+    - "-o"
+    - "BatchMode=yes"
+    - "-o"
+    - "IdentityAgent=none"
+    - "-o"
+    - "StrictHostKeyChecking=yes"
   remote_archive_path: "/root/boringctl-caddy.tgz"
   default_domain: "example.com"
   # Optional snippet applied to every generated site. It receives the site slug.

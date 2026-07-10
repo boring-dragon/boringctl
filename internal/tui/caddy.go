@@ -15,7 +15,7 @@ import (
 
 func (model model) caddyMenuItems() []list.Item {
 	return []list.Item{
-		item{title: "Add Route", description: "Create a managed Caddy route in the homelab Git repo", value: "add"},
+		item{title: "Add Route", description: "Create a managed Caddy route in the configured Git repository", value: "add"},
 		item{title: "List Routes", description: "Browse managed and discovered Caddy routes", value: "list"},
 		item{title: "Check Config", description: "Stage and validate Caddy without applying", value: "check"},
 		item{title: "Deploy Config", description: "Deploy the Git Caddy tree to the LXC", value: "deploy"},
