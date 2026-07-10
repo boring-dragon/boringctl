@@ -1191,7 +1191,7 @@ func (service *Service) nodeShellPlan(nodeName string, command []string) (ShellP
 		return ShellPlan{}, err
 	}
 
-	args := append([]string{}, service.Config.Caddy.SSHOptions...)
+	args := append([]string{}, service.Config.Defaults.SSHOptions...)
 	args = append(args, sshHost)
 	if len(command) > 0 {
 		args = append(args, "--")
@@ -1222,7 +1222,7 @@ func (service *Service) containerShellPlan(guest proxmox.VMResource, command []s
 		return ShellPlan{}, err
 	}
 
-	args := append([]string{}, service.Config.Caddy.SSHOptions...)
+	args := append([]string{}, service.Config.Defaults.SSHOptions...)
 	args = append(args, sshHost, "--", "pct")
 	if len(command) == 0 {
 		args = append(args, "enter", strconv.Itoa(guest.VMID))
@@ -1266,7 +1266,7 @@ func (service *Service) vmShellPlan(ctx context.Context, guest proxmox.VMResourc
 	}
 
 	sshHost := fmt.Sprintf("%s@%s", user, ipAddress)
-	args := append([]string{}, service.Config.Caddy.SSHOptions...)
+	args := append([]string{}, service.Config.Defaults.SSHOptions...)
 	args = append(args, sshHost)
 	if len(command) > 0 {
 		args = append(args, "--")

@@ -41,15 +41,16 @@ type AuthConfig struct {
 }
 
 type DefaultsConfig struct {
-	Bridge             string `yaml:"bridge"`
-	CPUType            string `yaml:"cpu_type"`
-	FullClone          bool   `yaml:"full_clone"`
-	SSHKey             string `yaml:"ssh_key"`
-	Network            string `yaml:"network"`
-	DHCPToStatic       bool   `yaml:"dhcp_to_static"`
-	StaticGateway      string `yaml:"static_gateway"`
-	StaticDNS          string `yaml:"static_dns"`
-	StaticPrefixLength int    `yaml:"static_prefix_length"`
+	Bridge             string   `yaml:"bridge"`
+	CPUType            string   `yaml:"cpu_type"`
+	FullClone          bool     `yaml:"full_clone"`
+	SSHKey             string   `yaml:"ssh_key"`
+	SSHOptions         []string `yaml:"ssh_options,omitempty"`
+	Network            string   `yaml:"network"`
+	DHCPToStatic       bool     `yaml:"dhcp_to_static"`
+	StaticGateway      string   `yaml:"static_gateway"`
+	StaticDNS          string   `yaml:"static_dns"`
+	StaticPrefixLength int      `yaml:"static_prefix_length"`
 }
 
 type CaddyConfig struct {
@@ -319,6 +320,9 @@ func (loadedConfig *Config) applyDefaults() {
 
 	if loadedConfig.Defaults.Network == "" {
 		loadedConfig.Defaults.Network = "dhcp"
+	}
+	if len(loadedConfig.Defaults.SSHOptions) == 0 {
+		loadedConfig.Defaults.SSHOptions = []string{"-o", "BatchMode=yes", "-o", "StrictHostKeyChecking=yes"}
 	}
 	if loadedConfig.Defaults.StaticPrefixLength == 0 {
 		loadedConfig.Defaults.StaticPrefixLength = 24

@@ -375,14 +375,15 @@ func (service *Service) doctorSSHCheck(ctx context.Context) DoctorCheck {
 		configuredHosts++
 
 		sshContext, cancelSSH := context.WithTimeout(ctx, 5*time.Second)
-		output, err := exec.CommandContext(sshContext, "ssh",
+		sshArgs := append([]string{}, service.Config.Defaults.SSHOptions...)
+		sshArgs = append(sshArgs,
 			"-o", "BatchMode=yes",
 			"-o", "ConnectionAttempts=1",
 			"-o", "ConnectTimeout=4",
-			"-o", "StrictHostKeyChecking=yes",
 			sshHost,
 			"true",
-		).CombinedOutput()
+		)
+		output, err := exec.CommandContext(sshContext, "ssh", sshArgs...).CombinedOutput()
 		cancelSSH()
 		if err != nil {
 			detail := strings.TrimSpace(string(output))

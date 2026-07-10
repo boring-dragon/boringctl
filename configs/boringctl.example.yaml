@@ -12,6 +12,7 @@ defaults:
   cpu_type: "host"
   full_clone: true
   ssh_key: "default"
+  ssh_options: ["-o", "BatchMode=yes", "-o", "StrictHostKeyChecking=yes"]
   network: "dhcp"
   dhcp_to_static: false
   static_gateway: "192.0.2.1"
