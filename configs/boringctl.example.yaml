@@ -1,0 +1,86 @@
+cluster:
+  endpoint: "https://pve.example.com:8006"
+  insecure_tls: false
+  # ca_file: "~/.config/boringctl/proxmox-ca.pem"
+
+auth:
+  token_id_env: "PVE_TOKEN_ID"
+  token_secret_env: "PVE_TOKEN_SECRET"
+
+defaults:
+  bridge: "vmbr0"
+  cpu_type: "host"
+  full_clone: true
+  ssh_key: "default"
+  network: "dhcp"
+  dhcp_to_static: false
+  static_gateway: "192.0.2.1"
+  static_dns: "192.0.2.1"
+  static_prefix_length: 24
+
+# Caddy integration is optional. Remove this block when it is not used.
+caddy:
+  repo_path: "~/homelab"
+  proxmox_ssh_host: "root@pve.example.com"
+  container_id: 112
+  ssh_options: ["-o", "BatchMode=yes", "-o", "IdentityAgent=none", "-o", "StrictHostKeyChecking=yes"]
+  remote_archive_path: "/root/boringctl-caddy.tgz"
+  default_domain: "example.com"
+  # Optional snippet applied to every generated site. It receives the site slug.
+  common_proxy_snippet: ""
+  # Required before creating routes with visibility: internal.
+  internal_acl_snippet: "lan_only"
+  # Requires a Caddy build containing the waf directive used by your Git tree.
+  public_waf_by_default: false
+
+nodes:
+  pve1:
+    label: "Primary node"
+    ssh_host: "root@pve.example.com"
+    storages: ["local-lvm"]
+
+storages:
+  local:
+    label: "Local files"
+  local-lvm:
+    label: "Local LVM"
+
+images:
+  ubuntu-24.04:
+    label: "Ubuntu 24.04 LTS"
+    family: "Ubuntu"
+    default_user: "ubuntu"
+    recommended: true
+    templates:
+      pve1: 9000
+
+lxc_images:
+  debian-13:
+    label: "Debian 13 LXC"
+    family: "Debian"
+    ostype: "debian"
+    default_user: "root"
+    recommended: true
+    templates:
+      pve1: "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+
+plans:
+  tiny:
+    label: "Tiny"
+    cores: 1
+    memory_mb: 1024
+    disk_gb: 20
+  small:
+    label: "Small"
+    cores: 2
+    memory_mb: 4096
+    disk_gb: 40
+  medium:
+    label: "Medium"
+    cores: 4
+    memory_mb: 8192
+    disk_gb: 80
+
+ssh_keys:
+  default:
+    path: "~/.ssh/id_ed25519.pub"

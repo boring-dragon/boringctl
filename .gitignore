@@ -1,0 +1,6 @@
+/boringctl
+/boringctl.yaml
+/boringctl.generated.yaml
+/dist/
+/tmp/
+*.log
